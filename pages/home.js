@@ -20,8 +20,8 @@ export default function HomeScreen({ navigation }) {
       setIsFetching(true);
 
       try {
-        await addItem('valorum', parseInt(value1));
-        await addItem('valordois', parseInt(value2));
+        await addItem('valorum', parseFloat(value1));
+        await addItem('valordois', parseFloat(value2));
         setValue1Inserted(value1);
         setValue2Inserted(value2);
       } catch (error) {
@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
       setIsFetching(true);
 
       try {
-        let total = parseInt(value1 || 0) + parseInt(value2 || 0);
+        let total = parseFloat(value1 || 0) + parseFloat(value2 || 0);
         setTotalValue(total.toString());
         await addItem('valortotal', total);
       } catch (error) {

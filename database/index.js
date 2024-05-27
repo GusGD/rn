@@ -7,9 +7,9 @@ const db = SQLite.openDatabase(databaseName);
 export const deleteDatabase = async () => {
   try {
     await db.transaction(async (tx) => {
-      await tx.executeSql('DROP TABLE IF EXISTS valorum');
-      await tx.executeSql('DROP TABLE IF EXISTS valordois');
-      await tx.executeSql('DROP TABLE IF EXISTS valortotal');
+      await tx.executeSql('DELETE FROM valorum');
+      await tx.executeSql('DELETE FROM valordois');
+      await tx.executeSql('DELETE FROM valortotal');
     });
     console.info('Banco de dados excluído com sucesso.');
   } catch (error) {
@@ -23,17 +23,17 @@ export const createTables = async () => {
   try {
     await db.transaction(async (tx) => {
       await tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS valorum (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr INTEGER)'
+        'CREATE TABLE IF NOT EXISTS valorum (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr NUMERIC)'
       );
       console.info('Tabela valorum criada com sucesso');
 
       await tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS valordois (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr INTEGER)'
+        'CREATE TABLE IF NOT EXISTS valordois (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr NUMERIC)'
       );
       console.info('Tabela valordois criada com sucesso');
 
       await tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS valortotal (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr INTEGER)'
+        'CREATE TABLE IF NOT EXISTS valortotal (id INTEGER PRIMARY KEY AUTOINCREMENT, vlr NUMERIC)'
       );
       console.info('Tabela valortotal criada com sucesso');
     });
